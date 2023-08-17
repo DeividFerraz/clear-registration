@@ -31,8 +31,8 @@ public class TestConfig implements CommandLineRunner{
 		
 		planoRepository.saveAll(Arrays.asList(p1, p2));
 		
-		ClientLog c1 = new ClientLog(null, "48358111860", "Deivid ferraz", "11968580094", "07144160", "deividferraz20@gmail.com", p2);
-		ClientLog c2 = new ClientLog(null, "48358131209", "Weterson ferraz", "11962925014", "00000000", "wetersonferraz98@gmail.com", p1);
+		ClientLog c1 = new ClientLog(null, "48358111860", "Deivid ferraz", "11968580094", "07144160", "64-A", "Viela 5 n20", "deividferraz20@gmail.com", p2);
+		ClientLog c2 = new ClientLog(null, "48358131209", "Weterson ferraz", "11962925014", "00000000", "64-B", null, "wetersonferraz98@gmail.com", p1);
 		
 		clientRepository.saveAll(Arrays.asList(c1, c2));
 

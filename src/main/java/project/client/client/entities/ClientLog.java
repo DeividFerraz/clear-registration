@@ -23,6 +23,8 @@ public class ClientLog implements Serializable{
 	private String name;
 	private String phone;
 	private String cep;
+	private String numResidencia;
+	private String complemento;
 	private String email;
 	
 	@ManyToOne
@@ -32,13 +34,15 @@ public class ClientLog implements Serializable{
 	public ClientLog() {
 	}
 
-	public ClientLog(Long id, String cpf, String name, String phone, String cep, String email, PlanoMovel flat) {
+	public ClientLog(Long id, String cpf, String name, String phone, String cep, String numResidencia, String complemento, String email, PlanoMovel flat) {
 		super();
 		this.id = id;
 		this.cpf = cpf;
 		this.name = name;
 		this.phone = phone;
 		this.cep = cep;
+		this.numResidencia = numResidencia;
+		this.complemento = complemento;
 		this.email = email;
 		this.flat = flat;
 	}
@@ -85,6 +89,22 @@ public class ClientLog implements Serializable{
 		this.cep = cep;
 	}
 
+	public String getNumResidencia() {
+		return numResidencia;
+	}
+
+	public void setNumResidencia(String numResidencia) {
+		this.numResidencia = numResidencia;
+	}
+	
+	public String getComplemento() {
+		return complemento;
+	}
+
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
+	}
+	
 	public String getEmail() {
 		return email;
 	}
@@ -117,7 +137,5 @@ public class ClientLog implements Serializable{
 		ClientLog other = (ClientLog) obj;
 		return Objects.equals(id, other.id);
 	}
-	
-	
 
 }
