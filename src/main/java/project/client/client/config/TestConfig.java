@@ -26,7 +26,7 @@ public class TestConfig implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 
-		PlanoMovel p1 = new PlanoMovel(null, "ROBBU CONTROLE 15GB", "R$49,90/mês", "*ROBBU CONTROLE 15GB*\\n15 *GIGA*\\n(8GB + 7GB BÔNUS)**\\n\\n  Apps Ilimitados\\n     - WHATSAP\\n     - WAZE \\n\\nLigações Ilimitadas\\nPara todo o Brasil\\nR$49,90/mês\\n**8GB no plano + 7GB bônus válidos por 12 meses");
+		PlanoMovel p1 = new PlanoMovel(null, "ROBBBU CONTROLE 15GB", "R$49,90/mês", "*ROBBU CONTROLE 15GB*\\n15 *GIGA*\\n(8GB + 7GB BÔNUS)**\\n\\n  Apps Ilimitados\\n     - WHATSAP\\n     - WAZE \\n\\nLigações Ilimitadas\\nPara todo o Brasil\\nR$49,90/mês\\n**8GB no plano + 7GB bônus válidos por 12 meses");
 		PlanoMovel p2 = new PlanoMovel(null, "ROBBU CONTROLE 20GB", "R$59,90/mês", "*ROBBU CONTROLE 20GB*\\n20 *GIGA*\\n(10GB + 10GB BÔNUS)**\\n\\n Apps Ilimitados\\n -  FACEBOOK \\n - WHATSAPP \\n - INSTAGRAM \\n - TWITER \\n - WAZE \\n\\nLigações Ilimitadas\\nPara todo o Brasil\\n\\nR$59,90/mês\\n\\n**10GB no plano + 10GB bônus válidos por 12 meses ");
 		
 		planoRepository.saveAll(Arrays.asList(p1, p2));
