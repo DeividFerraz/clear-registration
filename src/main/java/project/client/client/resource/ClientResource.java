@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import project.client.client.entities.ClientLog;
+import project.client.client.entities.PlanoMovel;
 import project.client.client.services.ClientServices;
 
 @RestController
@@ -34,6 +35,12 @@ public class ClientResource {
 	@GetMapping(value = "/{cpf}")
 	public ResponseEntity<ClientLog> findByCpf(@PathVariable String cpf) {
 	    ClientLog obj = service.findByCpf(cpf);
+	    return ResponseEntity.ok().body(obj);
+	}
+	
+	@GetMapping(value = "/{id}")
+	public ResponseEntity<ClientLog> findById(@PathVariable Long id) {
+		ClientLog obj = service.findById(id);
 	    return ResponseEntity.ok().body(obj);
 	}
 	
