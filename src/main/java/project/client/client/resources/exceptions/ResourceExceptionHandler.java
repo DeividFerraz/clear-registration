@@ -7,9 +7,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import com.educandoweb.course.services.exceptions.ResourceNotFoundException;
+
 import jakarta.servlet.http.HttpServletRequest;
 import project.client.client.services.exceptions.DataBaseException;
-import project.client.client.services.exceptions.ResourceNotFoundException;
 
 @ControllerAdvice//Isso vai interceptar as esseções que acontecerem, para que esse objeto possa executar o tratamento
 public class ResourceExceptionHandler {

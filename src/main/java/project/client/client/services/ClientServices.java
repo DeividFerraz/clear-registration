@@ -37,6 +37,11 @@ public class ClientServices {
 		return repository.save(obj);
 	}
 	
+	public boolean existsByCpf(String cpf) {
+	    return repository.existsByCpf(cpf);
+	}
+
+	
 	//tem o metodo delete ainda
 	
 	public ClientLog update(Long id, ClientLog obj) {

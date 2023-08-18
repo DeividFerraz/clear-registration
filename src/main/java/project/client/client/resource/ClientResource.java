@@ -16,6 +16,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import project.client.client.entities.ClientLog;
 import project.client.client.services.ClientServices;
+import project.client.client.services.exceptions.DuplicateCpfException;
 
 @RestController
 @RequestMapping(value = "/clients")
@@ -46,11 +47,18 @@ public class ClientResource {
 	}
 	
 	@PostMapping
-	public ResponseEntity<ClientLog> insert(@RequestBody ClientLog obj){//inserir obj no banco
-		obj = service.insert(obj);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
-		return ResponseEntity.created(uri).body(obj);
+	public ResponseEntity<ClientLog> insert(@RequestBody ClientLog obj) {
+	    // Verificar se o CPF já existe
+	    if (service.existsByCpf(obj.getCpf())) {
+	        throw new DuplicateCpfException("CPF já existe: " + obj.getCpf(),
+	                "CPF duplicado: " + obj.getCpf());
+	    }
+
+	    obj = service.insert(obj);
+	    URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
+	    return ResponseEntity.created(uri).body(obj);
 	}
+
 	
 	//tem o delete ainda
 	
