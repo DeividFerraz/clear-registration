@@ -10,4 +10,6 @@ public interface ClientRepository extends JpaRepository<ClientLog, Long>{
 
 	Optional<ClientLog> findByCpf(String cpf);
 
+	ClientLog getReferenceById(Long id);
+
 }
