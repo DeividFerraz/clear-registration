@@ -33,13 +33,13 @@ public class ClientResource {
 		
 	}
 	
-	@GetMapping(value = "/{cpf}")
+	@GetMapping(value = "/cpf/{cpf}")
 	public ResponseEntity<ClientLog> findByCpf(@PathVariable String cpf) {
 	    ClientLog obj = service.findByCpf(cpf);
 	    return ResponseEntity.ok().body(obj);
 	}
 	
-	@GetMapping(value = "/{id}")
+	@GetMapping(value = "/id/{id}")
 	public ResponseEntity<ClientLog> findById(@PathVariable Long id) {
 		ClientLog obj = serviceId.findById(id);
 	    return ResponseEntity.ok().body(obj);
