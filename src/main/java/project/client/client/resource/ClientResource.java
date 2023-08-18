@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import project.client.client.entities.ClientLog;
-import project.client.client.entities.PlanoMovel;
 import project.client.client.services.ClientServices;
 
 @RestController
@@ -24,6 +23,8 @@ public class ClientResource {
 	
 	@Autowired
 	private ClientServices service;
+	@Autowired
+	private ClientServices serviceId;
 	
 	@GetMapping
 	public ResponseEntity<List<ClientLog>> findAll(){
@@ -40,7 +41,7 @@ public class ClientResource {
 	
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<ClientLog> findById(@PathVariable Long id) {
-		ClientLog obj = service.findById(id);
+		ClientLog obj = serviceId.findById(id);
 	    return ResponseEntity.ok().body(obj);
 	}
 	

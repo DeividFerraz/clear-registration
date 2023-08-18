@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import jakarta.persistence.EntityNotFoundException;
 import project.client.client.entities.ClientLog;
-import project.client.client.entities.PlanoMovel;
 import project.client.client.repositories.ClientRepository;
 import project.client.client.services.exceptions.ResourceNotFoundException;
 
@@ -17,6 +16,8 @@ public class ClientServices {
 
 	@Autowired
 	private ClientRepository repository;
+	@Autowired
+	private ClientRepository repositoryId;
 	
 	public List<ClientLog> findAll(){
 		return repository.findAll();
@@ -28,7 +29,7 @@ public class ClientServices {
 	}
 	
 	public ClientLog findById(Long id) {
-	    Optional<ClientLog> obj = repository.findById(id);
+	    Optional<ClientLog> obj = repositoryId.findById(id);
 	    return obj.orElseThrow(() -> new ResourceNotFoundException(id));
 	}
 
