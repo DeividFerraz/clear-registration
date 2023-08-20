@@ -1,5 +1,6 @@
 package project.client.client.config;
 
+import java.time.Instant;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,21 +9,25 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 import project.client.client.entities.ClientLog;
+import project.client.client.entities.DetalhesPlano;
 import project.client.client.entities.PlanoMovel;
 import project.client.client.repositories.ClientRepository;
+import project.client.client.repositories.DetalhesPlanoRepository;
 import project.client.client.repositories.PlanoRepository;
 
 
 @Configuration
 @Profile("test")
 public class TestConfig implements CommandLineRunner{
-
+	
 	@Autowired
 	private ClientRepository clientRepository;
 	
 	@Autowired
 	private PlanoRepository planoRepository;
 	
+	@Autowired
+	private DetalhesPlanoRepository detalhesPlanoRepository;
 	@Override
 	public void run(String... args) throws Exception {
 
@@ -34,10 +39,12 @@ public class TestConfig implements CommandLineRunner{
 		ClientLog c1 = new ClientLog(null, "48358111860", "Deivid ferraz", "11968580094", "07144160", "64-A", "Viela 5 n20", "deividferraz20@gmail.com", p2);
 		ClientLog c2 = new ClientLog(null, "48358131209", "Weterson ferraz", "11962925014", "00000000", "64-B", null, "wetersonferraz98@gmail.com", p1);
 		
-		clientRepository.saveAll(Arrays.asList(c1, c2));
-
+		clientRepository.saveAll(Arrays.asList(c1, c2));;
 		
+		DetalhesPlano dp1 = new DetalhesPlano(p2.getPlano(), c2,  "13/07/2000", "Pendente", Instant.now());
+		DetalhesPlano dp2 = new DetalhesPlano(p1.getPlano(), c1,  "13/07/2000", "Pendente", Instant.now());
 		
+		detalhesPlanoRepository.saveAll(Arrays.asList(dp1, dp2));
 	}
 
 }

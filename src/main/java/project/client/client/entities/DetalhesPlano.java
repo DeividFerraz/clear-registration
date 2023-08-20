@@ -1,7 +1,12 @@
 package project.client.client.entities;
 
 import java.io.Serializable;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
@@ -14,31 +19,46 @@ public class DetalhesPlano implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@EmbeddedId
-	private DetalhesPlanoKayC id;
+	private DetalhesPlanoKayC id = new DetalhesPlanoKayC();
 	
-	private PlanoMovel plano;
+	private String planoAtual;
 	private String dataVencimento;
 	private String status;
-	private String contratadoEm;
+	private Instant contratadoEm = Instant.now(); // Definindo a data e hora atuais aqui
+	
+	
 	
 	public DetalhesPlano() {
 		
 	}
 
-	public DetalhesPlano(PlanoMovel plano, String dataVencimento, String status, String contratadoEm) {
+	public DetalhesPlano(String planoAtual, ClientLog movel, String dataVencimento, String status, Instant contratadoEm) {
 		super();
-		id.setMovel(plano);
+		//plano1.setPlano(plano1.getPlano());
+		this.planoAtual = planoAtual;
+		id.setMovel(movel);
 		this.dataVencimento = dataVencimento;
 		this.status = status;
 		this.contratadoEm = contratadoEm;
 	}
 
-	public PlanoMovel getPlano() {
+	
+	
+	public String getPlanoAtual() {
+		return planoAtual;
+	}
+
+	public void setPlanoAtual(String planoAtual) {
+		this.planoAtual = planoAtual;
+	}
+
+	@JsonIgnore
+	public ClientLog getMovel(){
 		return id.getMovel();
 	}
 
-	public void setPlano(PlanoMovel plano) {
-		id.setMovel(plano);//estou jogando o plano dentro de DetalhesPlanoKayC
+	public void setMovel(ClientLog movel) {
+		id.setMovel(movel);//estou jogando o plano dentro de DetalhesPlanoKayC
 	}
 
 	public String getDataVencimento() {
@@ -58,12 +78,15 @@ public class DetalhesPlano implements Serializable{
 	}
 
 	public String getContratadoEm() {
-		return contratadoEm;
+	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")
+                .withZone(ZoneId.of("America/Sao_Paulo"));
+        return formatter.format(contratadoEm);
 	}
 
-	public void setContratadoEm(String contratadoEm) {
+	public void setContratadoEm(Instant contratadoEm) {
 		this.contratadoEm = contratadoEm;
 	}
+	
 
 	@Override
 	public int hashCode() {
@@ -82,4 +105,5 @@ public class DetalhesPlano implements Serializable{
 		return Objects.equals(id, other.id);
 	}
 	//Só o campo Id identifica esse item complementar das classes  log e movel
+
 }

@@ -7,35 +7,25 @@ import jakarta.persistence.Embeddable;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import project.client.client.entities.ClientLog;
-import project.client.client.entities.PlanoMovel;
 
 @Embeddable
 public class DetalhesPlanoKayC implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@ManyToOne
-	@JoinColumn(name = "log_id")
-	private ClientLog log;
-	
-	@ManyToOne
 	@JoinColumn(name = "movel_id")
-	private PlanoMovel movel;
-	
-	public ClientLog getLog() {
-		return log;
-	}
-	public void setLog(ClientLog log) {
-		this.log = log;
-	}
-	public PlanoMovel getMovel() {
+	private ClientLog movel;
+
+
+	public ClientLog getMovel() {
 		return movel;
 	}
-	public void setMovel(PlanoMovel movel) {
+	public void setMovel(ClientLog movel) {
 		this.movel = movel;
 	}
 	@Override
 	public int hashCode() {
-		return Objects.hash(log, movel);
+		return Objects.hash(movel);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -46,6 +36,6 @@ public class DetalhesPlanoKayC implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		DetalhesPlanoKayC other = (DetalhesPlanoKayC) obj;
-		return Objects.equals(log, other.log) && Objects.equals(movel, other.movel);
+		return Objects.equals(movel, other.movel);
 	}
 }

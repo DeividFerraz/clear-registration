@@ -31,7 +31,7 @@ public class PlanoMovel implements Serializable{
 	@JsonIgnore
 	@OneToMany(mappedBy = "flat")
 	private List<ClientLog> orders = new ArrayList<>();
-	
+
 	public PlanoMovel() {
 	}
 

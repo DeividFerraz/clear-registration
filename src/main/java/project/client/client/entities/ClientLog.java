@@ -1,7 +1,9 @@
 package project.client.client.entities;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -9,6 +11,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -30,6 +33,10 @@ public class ClientLog implements Serializable{
 	@ManyToOne
 	@JoinColumn(name = "client_id")
 	private PlanoMovel flat;
+	
+	//Coleção Relacionada a classe DetalhesPlanoKayC
+	@OneToMany(mappedBy = "id.movel")
+	private Set<DetalhesPlano> details = new HashSet<>();
 	
 	public ClientLog() {
 	}
@@ -121,6 +128,10 @@ public class ClientLog implements Serializable{
 		this.flat = flat;
 	}
 
+	public Set<DetalhesPlano> getDetails(){
+		return details;
+	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(cpf);
