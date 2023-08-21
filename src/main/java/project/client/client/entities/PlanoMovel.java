@@ -2,9 +2,9 @@ package project.client.client.entities;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
-import java.util.Objects;
-
+import java.util.Set;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
@@ -32,6 +32,9 @@ public class PlanoMovel implements Serializable{
 	@OneToMany(mappedBy = "flat")
 	private List<ClientLog> orders = new ArrayList<>();
 
+	@OneToMany(mappedBy = "id.movel")
+	private Set<DetalhesPlano> details = new HashSet<>();
+	
 	public PlanoMovel() {
 	}
 
@@ -77,9 +80,21 @@ public class PlanoMovel implements Serializable{
 		this.planoCompleto = planoCompleto;
 	}
 
+	@JsonIgnore//Ao chamar o order/1 vai vir o producst pendurado no pedido
+	public Set<ClientLog> getItems() {
+		Set<ClientLog> set = new HashSet<>();
+		for (DetalhesPlano x : details) {
+			set.add(x.getLog());
+		}
+		return set;
+	}
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(id);
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
 	}
 
 	@Override
@@ -91,8 +106,11 @@ public class PlanoMovel implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		PlanoMovel other = (PlanoMovel) obj;
-		return Objects.equals(id, other.id);
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
 	}
-	
-	
 }

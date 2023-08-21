@@ -5,7 +5,9 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -35,8 +37,9 @@ public class ClientLog implements Serializable{
 	private PlanoMovel flat;
 	
 	//Coleção Relacionada a classe DetalhesPlanoKayC
-	@OneToMany(mappedBy = "id.movel")
+	@OneToMany(mappedBy = "id.log", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Set<DetalhesPlano> details = new HashSet<>();
+
 	
 	public ClientLog() {
 	}
@@ -128,13 +131,14 @@ public class ClientLog implements Serializable{
 		this.flat = flat;
 	}
 
+
 	public Set<DetalhesPlano> getDetails(){
 		return details;
 	}
 	
 	@Override
 	public int hashCode() {
-		return Objects.hash(cpf);
+		return Objects.hash(cpf, id);
 	}
 
 	@Override
@@ -146,7 +150,7 @@ public class ClientLog implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		ClientLog other = (ClientLog) obj;
-		return Objects.equals(id, other.id);
+		return Objects.equals(cpf, other.cpf) && Objects.equals(id, other.id);
 	}
 
 }
