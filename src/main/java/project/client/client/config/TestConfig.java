@@ -42,7 +42,7 @@ public class TestConfig implements CommandLineRunner{
 		clientRepository.saveAll(Arrays.asList(c1, c2));;
 		
 		DetalhesPlano dp1 = new DetalhesPlano(c1, p2, p2.getPlano(),"13/07/2000", "Pendente", Instant.now());
-		DetalhesPlano dp2 = new DetalhesPlano(c2, p1, p1.getPlano(),"13/07/2000", "Pendente", Instant.now());
+		DetalhesPlano dp2 = new DetalhesPlano(c1, p1,  p1.getPlano(),"13/07/2000", "Pendente", Instant.now());
 		
 		detalhesPlanoRepository.saveAll(Arrays.asList(dp1, dp2));
 	}

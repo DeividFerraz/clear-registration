@@ -1,9 +1,6 @@
 package project.client.client.services.exceptions;
 
 public class DuplicateCpfException extends RuntimeException {
-    /**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private String errorMessage;
 

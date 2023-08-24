@@ -30,6 +30,8 @@ public class ClientServices {
 	
 	public ClientLog findById(Long id) {
 	    Optional<ClientLog> obj = repositoryId.findById(id);
+	    /*orElseThrow é um metodo da interface optional, ele serve para ver se ah ou não um objeto 
+	     * na classe q foi declarada dento do optional, caso m haja ele lanca uma exceção*/
 	    return obj.orElseThrow(() -> new ResourceNotFoundException(id));
 	}
 
@@ -59,5 +61,6 @@ public class ClientServices {
 		entity.setEmail(obj.getEmail());
 		entity.setPhone(obj.getPhone());
 		entity.setFlat(obj.getFlat());
+		entity.setCpf(obj.getCpf());
 	}
 }

@@ -29,7 +29,7 @@ public class DetalhesPlano implements Serializable{
 		
 	}
 
-	public DetalhesPlano( ClientLog log, PlanoMovel movel, String planoAtual, String dataVencimento, String status, Instant contratadoEm) {
+	public DetalhesPlano(ClientLog movel, PlanoMovel log, String planoAtual, String dataVencimento, String status, Instant contratadoEm) {
 		super();
 		//plano1.setPlano(plano1.getPlano());
 		id.setMovel(movel);
@@ -41,20 +41,21 @@ public class DetalhesPlano implements Serializable{
 	}
 
 	@JsonIgnore
-	public ClientLog getLog(){
+	public PlanoMovel getLog(){
 		return id.getLog();
 	}
 
-	public void seLog(ClientLog log) {
+	public void seLog(PlanoMovel log) {
 		id.setLog(log);//estou jogando o plano dentro de DetalhesPlanoKayC
 	}
 	
-	public PlanoMovel getMovel() {
+	@JsonIgnore
+	public ClientLog getMovel(){
 		return id.getMovel();
 	}
-	
-	public void setMovel(PlanoMovel movel) {
-		id.setMovel(movel);
+
+	public void seMovel(ClientLog movel) {
+		id.setMovel(movel);//estou jogando o plano dentro de DetalhesPlanoKayC
 	}
 	
 	public String getPlanoAtual() {

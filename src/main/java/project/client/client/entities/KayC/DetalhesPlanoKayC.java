@@ -15,23 +15,24 @@ public class DetalhesPlanoKayC implements Serializable{
 
 	@ManyToOne
 	@JoinColumn(name = "log_id")
-	private ClientLog log;
+	private PlanoMovel log;
 	
 	@ManyToOne
 	@JoinColumn(name = "movel_id")
-	private PlanoMovel movel;
+	private ClientLog movel;
 
-
-	public PlanoMovel getMovel() {
+	
+	
+	public ClientLog getMovel() {
 		return movel;
 	}
-	public void setMovel(PlanoMovel movel) {
+	public void setMovel(ClientLog movel) {
 		this.movel = movel;
 	}
-	public ClientLog getLog() {
+	public PlanoMovel getLog() {
 		return log;
 	}
-	public void setLog(ClientLog log) {
+	public void setLog(PlanoMovel log) {
 		this.log = log;
 	}
 	@Override
